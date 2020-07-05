@@ -40,5 +40,10 @@
     "codecov": "^3.7.0",
     "mocha": "^8.0.1",
     "nyc": "^15.1.0"
-  }
+  },
+  "files": [
+    "bin/**",
+    "sass-renderer.js",
+    "sass-template.tmpl"
+  ]
 }
