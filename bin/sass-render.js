@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
-const yargs = require('yargs');
-const path = require('path');
-const gaze = require('gaze');
-const glob = require('glob');
 const Renderer = require('../sass-renderer.js');
+
+const fg = require('fast-glob');
+const gaze = require('gaze');
+const path = require('path');
+const yargs = require('yargs');
 
 (async () => {
     const o = yargs
@@ -75,11 +76,7 @@ const Renderer = require('../sass-renderer.js');
         });
     }
 
-    o.input.forEach(i => {
-        glob(i, (err, files) => {
-            files.forEach(render);
-        });
-    });
+    (await fg(o.input)).forEach(render);
 
     if (o.watch) {
         if (!o.quiet) console.log(`Watching ${o.input} for changes...`);
