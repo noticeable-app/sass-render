@@ -24,8 +24,8 @@
   },
   "author": "Noticeable Team <support@noticeable.io>",
   "scripts": {
-    "test": "nyc mocha",
-    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov -t $CODECOV_TOKEN"
+    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov -t $CODECOV_TOKEN",
+    "test": "nyc mocha"
   },
   "license": "Apache-2.0",
   "dependencies": {
