@@ -41,7 +41,6 @@ const Renderer = require('../SassRenderer.js');
         .option('suffix', {
             type: 'string',
             describe: 'Suffix for the rendered file',
-            default: '-css.js'
         })
         .option('quiet', {
             alias: 'q',

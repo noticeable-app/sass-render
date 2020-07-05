@@ -7,11 +7,11 @@ const renderSass = util.promisify(sass.render);
 const readFile = util.promisify(fs.readFile);
 const writeFile = util.promisify(fs.writeFile);
 
-DEFAULT_OPTIONS = {
+const DEFAULT_OPTIONS = {
     delim: /<%\s*content\s*%>/,
     include: [path.resolve(process.cwd(), 'node_modules')],
-    template: path.resolve(__dirname, 'template.js'),
-    suffix: '-css.js',
+    template: path.resolve(__dirname, 'sass-template.tmpl'),
+    suffix: '-css.ts',
     expandedOutput: false
 };
 
@@ -24,7 +24,7 @@ module.exports = class SassRenderer {
         if (options.template !== undefined) settings.template = options.template;
         if (options.suffix !== undefined) settings.suffix = options.suffix;
         if (options.expandedOutput !== undefined) settings.expandedOutput = options.expandedOutput;
-
+        
         Object.assign(this, settings);
     }
 
