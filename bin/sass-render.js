@@ -1,11 +1,12 @@
 #!/usr/bin/env node
+
 const yargs = require('yargs');
 const path = require('path');
 const gaze = require('gaze');
 const glob = require('glob');
 const Renderer = require('../SassRenderer.js');
 
-(async() => {
+(async () => {
     const o = yargs
         .command('$0 [input..]', 'Compile Sass to a template')
         .option('output', {

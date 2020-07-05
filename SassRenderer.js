@@ -24,7 +24,7 @@ module.exports = class SassRenderer {
         if (options.template !== undefined) settings.template = options.template;
         if (options.suffix !== undefined) settings.suffix = options.suffix;
         if (options.expandedOutput !== undefined) settings.expandedOutput = options.expandedOutput;
-        
+
         Object.assign(this, settings);
     }
 
@@ -35,7 +35,7 @@ module.exports = class SassRenderer {
             outputStyle: this.expandedOutput ? 'expanded' : 'compressed',
         })).css.toString();
 
-        return result.replace(/\\/g,"\\\\");
+        return result.replace(/\\/g, "\\\\");
     }
 
     async render(source, output) {
