@@ -4,7 +4,7 @@ const yargs = require('yargs');
 const path = require('path');
 const gaze = require('gaze');
 const glob = require('glob');
-const Renderer = require('../SassRenderer.js');
+const Renderer = require('../sass-renderer.js');
 
 (async () => {
     const o = yargs

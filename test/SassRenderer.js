@@ -3,7 +3,7 @@ const fs = require('fs');
 const {promisify} = require('util');
 const chai = require("chai");
 const chaiAsPromised = require("chai-as-promised");
-const Renderer = require('../SassRenderer');
+const Renderer = require('../sass-renderer');
 
 
 var {expect} = chai;
@@ -16,7 +16,7 @@ const deleteFile = promisify(fs.unlink);
 const stat = promisify(fs.stat);
 
 
-const DEFAULT_OPTIONS = require('../SassRenderer').DEFAULT_OPTIONS;
+const DEFAULT_OPTIONS = require('../sass-renderer').DEFAULT_OPTIONS;
 
 const INPUT_FILE_DEFAULT = path.resolve(__dirname, './test.scss');
 const INPUT_FILE_TEMPLATE = path.resolve(__dirname, '../test-templates/otherTemplate.js');

@@ -18,7 +18,7 @@
     "type": "git",
     "url": "https://github.com/noticeable-app/sass-render"
   },
-  "main": "SassRenderer.js",
+  "main": "sass-renderer.js",
   "bin": {
     "sass-render": "bin/sass-render.js"
   },
