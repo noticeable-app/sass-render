@@ -1,27 +1,27 @@
-# Web Component SASS Render
+# SASS Render
 
-[![npm](https://img.shields.io/npm/v/wc-sass-render.svg)](http://npmjs.com/package/wc-sass-render)
-[![Travis](https://img.shields.io/travis/tristanMatthias/wc-sass-render.svg)](https://travis-ci.org/tristanMatthias/wc-sass-render)
-[![Codecov](https://img.shields.io/codecov/c/github/codecov/example-python.svg)](https://codecov.io/gh/tristanMatthias/wc-sass-render)
+This project makes your SASS modular, and importable by any Web Component libraries you want to use.
 
-Compile Sass files to a [lit-html](https://github.com/Polymer/lit-html) style template to be imported by JS like [lit-element](https://github.com/Polymer/lit-element) .
-
+It compiles SASS files to JavaScript/TypeScript style templates.
 
 ## Motivation
-> This project was written by inspired by [Google's Material Web Component Sass Render](https://github.com/material-components/material-components-web-components/tree/master/packages/sass-render).
-> I expanded this out to be non Material specific, and include libraries and recursive directory parsing.
 
-This project exists to make your SASS modular, and importable by any style of Web Components you want to use.
+> This project is inspired by [Google's Material Web Component Sass Render](https://github.com/material-components/material-components-web-components/tree/master/scripts/sass-render).
+> It has been expanded to make the code reusable from other projects and to support recursive directory parsing.
 
-
+The original code has been forked from https://github.com/tristanMatthias/wc-sass-render/commits/master.
 
 ## Installation
-`yarn global add wc-sass-render`
+
+```
+yarn global add @noticeable-app/sass-render
+```
+
 This will install `sass-render` as a global CLI tool.
 
-
 ## Usage & options
-For a list of complete options, run `sass-render --help`
+
+For a list of complete options, run `sass-render --help`.
 
 **Simple usage**
 Renders a `./src/components/button-css.js` file
