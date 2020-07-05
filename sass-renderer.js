@@ -35,7 +35,7 @@ module.exports = class SassRenderer {
             outputStyle: this.expandedOutput ? 'expanded' : 'compressed',
         })).css.toString();
 
-        return result.replace(/\\/g, "\\\\");
+        return result.trim().replace(/\\/g, "\\\\");
     }
 
     async render(source, output) {
@@ -52,6 +52,7 @@ module.exports = class SassRenderer {
         }
 
         const newContent = tmp.replace(delim, await this.css(source));
+
         if (!output) {
             output = `${source.split('.').slice(0, -1).join('.')}${suffix}`;
         }
