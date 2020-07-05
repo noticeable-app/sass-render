@@ -9,7 +9,7 @@ It compiles SASS files to JavaScript/TypeScript style templates.
 > This project is inspired by [Google's Material Web Component Sass Render](https://github.com/material-components/material-components-web-components/tree/master/scripts/sass-render).
 > It has been expanded to make the code reusable from other projects and to support recursive directory parsing.
 
-The original code has been forked from https://github.com/tristanMatthias/wc-sass-render/commits/master.
+The original code is a fork of https://github.com/tristanMatthias/wc-sass-render/tree/dc4a15718a7e23532807f45bb09e20edfd10cedd.
 
 ## Installation
 
