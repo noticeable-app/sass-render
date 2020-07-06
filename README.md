@@ -8,6 +8,8 @@ Although this is quite opinionated, you can easily change the output template an
 
 ## Installation
 
+You can install `sass-render` as a dev dependency in your current project:
+
 ```
 npm install @noticeable/sass-render --save-dev
 ```
@@ -16,7 +18,16 @@ npm install @noticeable/sass-render --save-dev
 yarn add @noticeable/sass-render --dev
 ```
 
-This will install `sass-render` as a global CLI tool.
+or as a global package to have the command `sass-render` available everywhere:
+
+```
+npm install --global @noticeable/sass-render
+```
+
+```
+yarn global add @noticeable/sass-render
+```
+
 
 ## Usage & options
 
