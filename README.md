@@ -9,7 +9,11 @@ Although this is quite opinionated, you can easily change the output template an
 ## Installation
 
 ```
-yarn global add @noticeable/sass-render
+npm install @noticeable/sass-render --save-dev
+```
+
+```
+yarn add @noticeable/sass-render --dev
 ```
 
 This will install `sass-render` as a global CLI tool.
@@ -90,10 +94,10 @@ Once your SASS files are converted into TypeScript or JavaScript files, you can 
 
 ```typescript
 import {CSSResult, customElement, html, LitElement, TemplateResult} from 'lit-element';
-import {styles} from './button-css';
+import {styles} from './my-button-css';
 
 @customElement('my-button')
-export class Button extends LitElement {
+export class MyButton extends LitElement {
 
     static get styles(): CSSResult {
         return styles;
