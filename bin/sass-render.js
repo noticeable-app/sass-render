@@ -5,10 +5,11 @@ const Renderer = require('../sass-renderer.js');
 const fg = require('fast-glob');
 const gaze = require('gaze');
 const path = require('path');
-const yargs = require('yargs');
+const yargs = require('yargs/yargs');
+const { hideBin } = require('yargs/helpers');
 
 (async () => {
-    const o = yargs
+    const o = yargs(hideBin(process.argv))
         .command('$0 [input..]', 'Compile Sass to a template')
         .option('output', {
             alias: 'o',
