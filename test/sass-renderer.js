@@ -33,7 +33,7 @@ export const styles = css\`a{color:red}\`;\n`;
 
 const OUTPUT_EXPECTED_ESCAPE = `import {css} from 'lit-element';
 
-export const styles = css\`.char-render{content:"\\\\f2e6"}\`;
+export const styles = css\`.char-render{content:""}\`;
 `;
 
 const OUTPUT_EXPECTED_CUSTOM = `export default \`<style>a{color:red}</style>\`;\n`;

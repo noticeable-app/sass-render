@@ -1,9 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 const util = require('util');
-const sass = require('node-sass');
+const sass = require('sass');
 
-const renderSass = util.promisify(sass.render);
 const readFile = util.promisify(fs.readFile);
 const writeFile = util.promisify(fs.writeFile);
 
@@ -29,11 +28,11 @@ module.exports = class SassRenderer {
     }
 
     async css(sassFile) {
-        let result = (await renderSass({
+        let result = sass.renderSync({
             file: sassFile,
             includePaths: this.include,
             outputStyle: this.expandedOutput ? 'expanded' : 'compressed',
-        })).css.toString();
+        }).css.toString();
 
         return result.trim().replace(/\\/g, "\\\\");
     }
