@@ -3,7 +3,7 @@
 This project makes your SASS modular, and importable by any Web Component libraries you want to use.
 
 By default, this utility compiles SASS files to TypeScript style templates using 
-the [lit-element](https://lit-element.polymer-project.org/) `css` tag function.
+the [lit](https://lit.dev) `css` tag function.
 Although this is quite opinionated, you can easily change the output template and the generated file extension.
 
 ## Installation
@@ -101,10 +101,11 @@ sass-render ./src/**/*.scss -i '../sass-lib/, ../another-lib'
 ### Importing
 
 Once your SASS files are converted into TypeScript or JavaScript files, you can use them inside a library like 
-`lit-element`. Here is a TypeScript example:
+`lit`. Here is a TypeScript example:
 
 ```typescript
-import {CSSResult, customElement, html, LitElement, TemplateResult} from 'lit-element';
+import {CSSResult, LitElement, TemplateResult, html} from 'lit';
+import {customElement} from 'lit/decorators';
 import {styles} from './my-button-css';
 
 @customElement('my-button')
