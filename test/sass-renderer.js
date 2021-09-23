@@ -27,11 +27,11 @@ const OUTPUT_FILE_DEFAULT = path.resolve(__dirname, './test-css.ts');
 const OUTPUT_FILE_CUSTOM = path.resolve(__dirname, './test-styles.ts');
 const OUTPUT_FILE_ESCAPE = path.resolve(__dirname, './test-escape-char.ts');
 
-const OUTPUT_EXPECTED_DEFAULT = `import {css} from 'lit-element';
+const OUTPUT_EXPECTED_DEFAULT = `import {css} from 'lit';
 
 export const styles = css\`a{color:red}\`;\n`;
 
-const OUTPUT_EXPECTED_ESCAPE = `import {css} from 'lit-element';
+const OUTPUT_EXPECTED_ESCAPE = `import {css} from 'lit';
 
 export const styles = css\`.char-render{content:""}\`;
 `;
