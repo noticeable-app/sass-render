@@ -105,7 +105,7 @@ Once your SASS files are converted into TypeScript or JavaScript files, you can 
 
 ```typescript
 import {CSSResult, LitElement, TemplateResult, html} from 'lit';
-import {customElement} from 'lit/decorators';
+import {customElement} from 'lit/decorators.js';
 import {styles} from './my-button-css';
 
 @customElement('my-button')
