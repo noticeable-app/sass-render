@@ -1,6 +1,6 @@
 {
   "name": "@noticeable/sass-render",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Render SASS into importable templates for Typescript or Javascript",
   "homepage": "https://github.com/noticeable-app/sass-render",
   "keywords": [
@@ -34,11 +34,11 @@
   "dependencies": {
     "fast-glob": "^3.2.12",
     "gaze": "^1.1.3",
-    "sass": "^1.55.0",
-    "yargs": "^17.6.0"
+    "sass": "^1.56.1",
+    "yargs": "^17.6.2"
   },
   "devDependencies": {
-    "chai": "^4.3.6",
+    "chai": "^4.3.7",
     "chai-as-promised": "^7.1.1",
     "codecov": "^3.8.3",
     "mocha": "^10.1.0",
