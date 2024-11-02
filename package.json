@@ -1,6 +1,6 @@
 {
   "name": "@noticeable/sass-render",
-  "version": "2.0.5",
+  "version": "3.0.0",
   "description": "Render SASS into importable templates for Typescript or Javascript",
   "homepage": "https://github.com/noticeable-app/sass-render",
   "keywords": [
