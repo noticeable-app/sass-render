@@ -1,4 +1,4 @@
-name: Test and Coverage
+name: Build and Test
 
 on: [push, pull_request]
 
@@ -16,6 +16,3 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm install
     - run: npm run test
-    - run: npm run coverage
-      env:
-        CODECOV_TOKEN:  ${{ secrets.CODECOV_TOKEN }}
