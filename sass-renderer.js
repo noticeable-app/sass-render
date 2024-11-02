@@ -16,7 +16,7 @@ const DEFAULT_OPTIONS = {
 
 module.exports = class SassRenderer {
     constructor(options = {}) {
-        const settings = {...DEFAULT_OPTIONS};
+        const settings = { ...DEFAULT_OPTIONS };
 
         if (options.delim !== undefined) settings.delim = options.delim;
         if (options.include !== undefined) settings.include = options.include;
@@ -28,21 +28,16 @@ module.exports = class SassRenderer {
     }
 
     async css(sassFile) {
-        let result = sass.renderSync({
-            file: sassFile,
-            includePaths: this.include,
-            outputStyle: this.expandedOutput ? 'expanded' : 'compressed',
-        }).css.toString();
+        const result = await sass.compileAsync(sassFile, {
+            loadPaths: this.include,
+            style: this.expandedOutput ? 'expanded' : 'compressed',
+        });
 
-        return result.trim().replace(/\\/g, "\\\\");
+        return result.css.trim().replace(/\\/g, "\\\\");
     }
 
     async render(source, output) {
-        const {
-            delim,
-            template,
-            suffix
-        } = this;
+        const { delim, template, suffix } = this;
         const tmp = await readFile(template, 'utf-8');
         const match = delim.exec(tmp);
 
@@ -57,6 +52,6 @@ module.exports = class SassRenderer {
         }
         return writeFile(output, newContent, 'utf-8');
     }
-}
+};
 
 module.exports.DEFAULT_OPTIONS = DEFAULT_OPTIONS;

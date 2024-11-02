@@ -1,5 +1,5 @@
-@import 'lib';
-@import 'nested-include';
+@use 'lib';
+@use 'nested-include';
 
 a {
     @extend %blue;
