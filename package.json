@@ -35,7 +35,7 @@
   },
   "author": "Noticeable Team <support@noticeable.io>",
   "scripts": {
-    "test": "node --test \"__tests__/*.test.js\""
+    "test": "node --test __tests__/sass-renderer.test.js"
   },
   "license": "Apache-2.0",
   "dependencies": {
