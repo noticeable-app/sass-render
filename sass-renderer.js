@@ -1,20 +1,16 @@
-const fs = require('fs');
-const path = require('path');
-const util = require('util');
-const sass = require('sass');
+import { readFile, writeFile } from 'node:fs/promises';
+import path from 'node:path';
+import * as sass from 'sass';
 
-const readFile = util.promisify(fs.readFile);
-const writeFile = util.promisify(fs.writeFile);
-
-const DEFAULT_OPTIONS = {
+export const DEFAULT_OPTIONS = {
     delim: /<%\s*content\s*%>/,
     include: [path.resolve(process.cwd(), 'node_modules')],
-    template: path.resolve(__dirname, 'sass-template.tmpl'),
+    template: path.resolve(import.meta.dirname, 'sass-template.tmpl'),
     suffix: '-css.ts',
     expandedOutput: false
 };
 
-module.exports = class SassRenderer {
+export default class SassRenderer {
     constructor(options = {}) {
         const settings = { ...DEFAULT_OPTIONS };
 
@@ -52,6 +48,4 @@ module.exports = class SassRenderer {
         }
         return writeFile(output, newContent, 'utf-8');
     }
-};
-
-module.exports.DEFAULT_OPTIONS = DEFAULT_OPTIONS;
+}

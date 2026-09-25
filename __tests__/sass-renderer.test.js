@@ -1,13 +1,11 @@
-const path = require('path');
-const fs = require('fs');
-const { promisify } = require('util');
-const Renderer = require('../sass-renderer');
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import { readFile, stat } from 'node:fs/promises';
+import path from 'node:path';
+import { after, afterEach, describe, it } from 'node:test';
+import Renderer, { DEFAULT_OPTIONS } from '../sass-renderer.js';
 
-const readFile = promisify(fs.readFile);
-const deleteFile = promisify(fs.unlink);
-const stat = promisify(fs.stat);
-
-const DEFAULT_OPTIONS = require('../sass-renderer').DEFAULT_OPTIONS;
+const __dirname = import.meta.dirname;
 
 const INPUT_FILE_DEFAULT = path.resolve(__dirname, './test.scss');
 const INPUT_FILE_TEMPLATE = path.resolve(__dirname, '../test-templates/otherTemplate.js');
@@ -46,24 +44,24 @@ const deleteRenders = async () => {
 
 describe('SASS Renderer', () => {
     afterEach(deleteRenders);
-    afterAll(deleteRenders);
+    after(deleteRenders);
 
     describe('Setup class', () => {
         it('should create a SassRenderer class', () => {
             const r = new Renderer();
-            expect(r).toBeInstanceOf(Renderer);
+            assert.ok(r instanceof Renderer);
         });
 
         it('should have the right methods', () => {
             const r = new Renderer();
-            expect(typeof r.css).toBe('function');
-            expect(typeof r.render).toBe('function');
+            assert.equal(typeof r.css, 'function');
+            assert.equal(typeof r.render, 'function');
         });
 
         it('should have default options', () => {
             const r = new Renderer();
             Object.keys(DEFAULT_OPTIONS).forEach(o => {
-                expect(r[o]).toBe(DEFAULT_OPTIONS[o]);
+                assert.equal(r[o], DEFAULT_OPTIONS[o]);
             });
         });
 
@@ -76,11 +74,11 @@ describe('SASS Renderer', () => {
                 expandedOutput: true,
             };
             const r = new Renderer(customOptions);
-            expect(r.delim).toBe(customOptions.delim);
-            expect(r.include).toBe(customOptions.include);
-            expect(r.template).toBe(customOptions.template);
-            expect(r.suffix).toBe(customOptions.suffix);
-            expect(r.expandedOutput).toBe(customOptions.expandedOutput);
+            assert.equal(r.delim, customOptions.delim);
+            assert.equal(r.include, customOptions.include);
+            assert.equal(r.template, customOptions.template);
+            assert.equal(r.suffix, customOptions.suffix);
+            assert.equal(r.expandedOutput, customOptions.expandedOutput);
         });
     });
 
@@ -88,33 +86,33 @@ describe('SASS Renderer', () => {
         it('should compile sass to a string with css(src)', async () => {
             const r = new Renderer();
             const css = await r.css(path.resolve(__dirname, 'test.scss'));
-            expect(css).toBe('a{color:red}');
+            assert.equal(css, 'a{color:red}');
         });
 
         it('should create a new file with render(src)', async () => {
             const r = new Renderer();
             await r.render(INPUT_FILE_DEFAULT);
-            expect(await stat(OUTPUT_FILE_DEFAULT)).toBeTruthy();
+            assert.ok(await stat(OUTPUT_FILE_DEFAULT));
         });
 
         it('should render SASS into a new file with render(src)', async () => {
             const r = new Renderer();
             await r.render(INPUT_FILE_DEFAULT);
             const cssModule = (await readFile(OUTPUT_FILE_DEFAULT)).toString();
-            expect(cssModule).toBe(OUTPUT_EXPECTED_DEFAULT);
+            assert.equal(cssModule, OUTPUT_EXPECTED_DEFAULT);
         });
 
         it('should render SASS into a custom file with render(src, output)', async () => {
             const r = new Renderer();
             await r.render(INPUT_FILE_DEFAULT, OUTPUT_FILE_CUSTOM);
-            expect(await stat(OUTPUT_FILE_CUSTOM)).toBeTruthy();
+            assert.ok(await stat(OUTPUT_FILE_CUSTOM));
         });
 
         it('should replace CSS single escape characters with double escapes', async () => {
             const r = new Renderer();
             await r.render(INPUT_FILE_ESCAPE, OUTPUT_FILE_ESCAPE);
             const cssModule = (await readFile(OUTPUT_FILE_ESCAPE)).toString();
-            expect(cssModule).toBe(OUTPUT_EXPECTED_ESCAPE);
+            assert.equal(cssModule, OUTPUT_EXPECTED_ESCAPE);
         });
     });
 
@@ -123,7 +121,7 @@ describe('SASS Renderer', () => {
             const r = new Renderer({ template: INPUT_FILE_TEMPLATE });
             await r.render(INPUT_FILE_DEFAULT);
             const cssModule = (await readFile(OUTPUT_FILE_DEFAULT)).toString();
-            expect(cssModule).toBe(OUTPUT_EXPECTED_CUSTOM);
+            assert.equal(cssModule, OUTPUT_EXPECTED_CUSTOM);
         });
 
         it('renders with a custom delimiter', async () => {
@@ -133,19 +131,19 @@ describe('SASS Renderer', () => {
             });
             await r.render(INPUT_FILE_DEFAULT);
             const cssModule = (await readFile(OUTPUT_FILE_DEFAULT)).toString();
-            expect(cssModule).toBe(OUTPUT_EXPECTED_CUSTOM);
+            assert.equal(cssModule, OUTPUT_EXPECTED_CUSTOM);
         });
 
         it('throws error if no match found', async () => {
             const r = new Renderer({ template: INPUT_FILE_DELIM });
-            await expect(r.render(INPUT_FILE_DEFAULT)).rejects.toThrow(/Template file .* did not contain template delimiters/);
+            await assert.rejects(r.render(INPUT_FILE_DEFAULT), /Template file .* did not contain template delimiters/);
         });
 
         it('renders with a custom suffix', async () => {
             const r = new Renderer({ suffix: '-styles.ts' });
             await r.render(INPUT_FILE_DEFAULT);
             const cssModule = (await readFile(OUTPUT_FILE_CUSTOM)).toString();
-            expect(cssModule).toBe(OUTPUT_EXPECTED_DEFAULT);
+            assert.equal(cssModule, OUTPUT_EXPECTED_DEFAULT);
         });
 
         it('renders with a custom SASS lib includes', async () => {
@@ -155,7 +153,7 @@ describe('SASS Renderer', () => {
             });
             await r.render(path.resolve(__dirname, 'test-with-include.scss'), OUTPUT_FILE_DEFAULT);
             const cssModule = (await readFile(OUTPUT_FILE_DEFAULT)).toString();
-            expect(cssModule).toBe(OUTPUT_EXPECTED_LIB);
+            assert.equal(cssModule, OUTPUT_EXPECTED_LIB);
         });
 
         it('renders with multiple custom SASS lib includes', async () => {
@@ -168,7 +166,7 @@ describe('SASS Renderer', () => {
             });
             await r.render(path.resolve(__dirname, 'test-with-multi-include.scss'), OUTPUT_FILE_DEFAULT);
             const cssModule = (await readFile(OUTPUT_FILE_DEFAULT)).toString();
-            expect(cssModule).toBe(OUTPUT_EXPECTED_MULTI_LIB);
+            assert.equal(cssModule, OUTPUT_EXPECTED_MULTI_LIB);
         });
     });
 });

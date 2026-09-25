@@ -8,6 +8,8 @@ Although this is quite opinionated, you can easily change the output template an
 
 ## Installation
 
+Requires Node.js 20.19 or later. The package is ESM only since 4.0.0.
+
 You can install `sass-render` as a dev dependency in your current project:
 
 ```
@@ -96,6 +98,14 @@ By default, sass-render will include the `node_modules` relative to the current 
 ```
 sass-render ./src/**/*.scss -i '../sass-lib/'
 sass-render ./src/**/*.scss -i '../sass-lib/, ../another-lib'
+```
+
+### Programmatic use
+
+```javascript
+import SassRenderer from '@noticeable/sass-render';
+
+await new SassRenderer({ suffix: '-styles.ts' }).render('./src/components/button.scss');
 ```
 
 ### Importing

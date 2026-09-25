@@ -1,6 +1,6 @@
 {
   "name": "@noticeable/sass-render",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "Render SASS into importable templates for Typescript or Javascript",
   "homepage": "https://github.com/noticeable-app/sass-render",
   "keywords": [
@@ -21,23 +21,29 @@
     "type": "git",
     "url": "git+https://github.com/noticeable-app/sass-render.git"
   },
+  "type": "module",
   "main": "sass-renderer.js",
+  "exports": {
+    ".": "./sass-renderer.js",
+    "./package.json": "./package.json"
+  },
   "bin": {
     "sass-render": "bin/sass-render.js"
   },
+  "engines": {
+    "node": ">=20.19.0"
+  },
   "author": "Noticeable Team <support@noticeable.io>",
   "scripts": {
-    "test": "jest"
+    "test": "node --test \"__tests__/*.test.js\""
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "fast-glob": "^3.3.2",
-    "gaze": "^1.1.3",
-    "sass": "^1.80.6",
-    "yargs": "^17.7.2"
-  },
-  "devDependencies": {
-    "jest": "^29.7.0"
+    "chokidar": "^5.0.0",
+    "picomatch": "^4.0.7",
+    "sass": "^1.105.0",
+    "tinyglobby": "^0.2.17",
+    "yargs": "^18.2.0"
   },
   "files": [
     "bin/**",
